@@ -75,6 +75,7 @@ npm run dev -- --port 3000 2>&1 | Tee-Object -FilePath dev.log
 Tell Copilot **"check logs"** at any point — it reads `dev.log` and flags errors or slow requests.
 
 ## Code Style
+- Write as a senior engineer: minimal surface area, obvious naming, no abstractions before they're needed
 - Comments explain WHY, not what
 - One file = one responsibility
 - Prefer early returns for error handling
