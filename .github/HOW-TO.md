@@ -71,7 +71,7 @@ src/lib/
 1. Copy `.github/`, `.vscode/`, and `src/lib/` into the new project
 2. Run `npm i -D prettier` (for the post-edit hook)
 3. Drop a `context.md` in the project root with your product idea, target user, stack additions, and routes
-4. Type `/project-init` — Copilot reads `context.md` + `development-principles.md` and fills in `.github/copilot-instructions.md`
+4. Type `/project-init` — Copilot reads `context.md` and fills in `.github/copilot-instructions.md`
 5. Done — everything else applies automatically
 
 ## Live Log Monitoring
@@ -89,10 +89,4 @@ Prerequisite: the server must be running and `dev.log` must be capturing output 
 4. **Ship** → type `@launch-check run the pre-ship checklist`
 5. **Push** → review the commit diff, then `git push` yourself
 
-## Useful Commands
-
-- `/init` — auto-generate copilot-instructions.md from your project
-- `/hooks` — configure hooks interactively
-- `/agents` — manage custom agents
-- `/prompts` — manage prompt files
-- `Configure Chat (gear icon) > Diagnostics` — see loaded configs and errors
+> Tip: `Configure Chat (gear icon) > Diagnostics` shows all loaded configs and errors.
