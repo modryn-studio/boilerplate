@@ -45,4 +45,4 @@ applyTo: "**/*.ts,**/*.tsx,**/app/**"
 
 ## Styling
 - Tailwind CSS utility classes — no CSS modules or styled-components
-- Use `cn()` helper (clsx + tailwind-merge) for conditional classes
+- Use `cn()` helper from `@/lib/cn` (clsx + tailwind-merge) for conditional classes

@@ -62,6 +62,7 @@ Configured in `.github/hooks/post-edit-format.json`. Requires Prettier installed
 ├── settings.json                  ← Agent mode enabled
 └── mcp.json                       ← MCP server config (http + stdio)
 src/lib/
+├── cn.ts                          ← Tailwind class merge utility (clsx + tailwind-merge)
 ├── route-logger.ts                ← API route logging utility (createRouteLogger)
 └── analytics.ts                   ← GA4 event tracking abstraction (analytics.track)
 context.md                         ← Fill this in per project, then run /project-init

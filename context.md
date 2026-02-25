@@ -16,5 +16,6 @@
 
 ## Route Map
 <!-- List every route and what it does.
-     /privacy and /terms will be added automatically. -->
+     /privacy and /terms will be added automatically.
+     Example: - `/dashboard` → Main user dashboard after login -->
 - `/` →

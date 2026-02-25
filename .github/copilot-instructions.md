@@ -8,7 +8,7 @@
 - Tailwind CSS for styling
 - Vercel for deployment
 - GA4 for custom event tracking (via `@/lib/analytics.ts` — never call `gtag()` directly)
-- Vercel Analytics free tier for pageviews only — do not use their `track()` API
+- Vercel Analytics `<Analytics />` component in `layout.tsx` for pageviews only — do not use their `track()` API
 <!-- TODO: add project-specific services (e.g. Resend, Stripe, Prisma, Supabase) -->
 
 ## Project Structure
