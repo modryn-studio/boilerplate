@@ -58,11 +58,14 @@ Configured in `.github/hooks/post-edit-format.json`. Requires Prettier installed
 .vscode/
 ├── settings.json                  ← Agent mode enabled
 └── mcp.json                       ← MCP server config (http + stdio)
+src/lib/
+├── route-logger.ts                ← API route logging utility (createRouteLogger)
+└── analytics.ts                   ← GA4 event tracking abstraction (analytics.track)
 ```
 
 ## New Project Setup
 
-1. Copy `.github/` and `.vscode/` folders into the new project
+1. Copy `.github/`, `.vscode/`, and `src/lib/` into the new project
 2. Edit `.github/copilot-instructions.md` — update project name, stack, routes, and rules
 3. Run `npm i -D prettier` (for the post-edit hook)
 4. Done — everything else applies automatically
