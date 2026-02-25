@@ -33,6 +33,41 @@ I'm not a traditional developer — I build fast using AI-assisted development.
 - `/privacy`         → Privacy policy
 - `/terms`           → Terms of service
 
+## API Route Logging
+
+Every new API route (`app/api/**/route.ts`) MUST use `createRouteLogger` from `@/lib/route-logger`.
+
+```typescript
+import { createRouteLogger } from '@/lib/route-logger';
+const log = createRouteLogger('my-route');
+
+export async function POST(req: Request): Promise<Response> {
+  const ctx = log.begin();
+  try {
+    log.info(ctx.reqId, 'Request received', { /* key fields */ });
+    // ... handler body ...
+    return log.end(ctx, Response.json(result), { /* key result fields */ });
+  } catch (error) {
+    log.err(ctx, error);
+    return Response.json({ error: 'Internal error' }, { status: 500 });
+  }
+}
+```
+
+- `begin()` prints the `─` separator + START line with a 5-char `reqId`
+- `info()` / `warn()` log mid-request milestones
+- `end()` logs ✅ with elapsed ms and returns the response
+- `err()` logs ❌ with elapsed ms
+- Never use raw `console.log` in routes — always go through the logger
+
+## Dev Server
+
+Start with `Ctrl+Shift+B` (default build task). This runs:
+```
+npm run dev -- --port 3000 2>&1 | Tee-Object -FilePath dev.log
+```
+Tell Copilot **"check logs"** at any point — it reads `dev.log` and flags errors or slow requests.
+
 ## Code Style
 - Comments explain WHY, not what
 - One file = one responsibility

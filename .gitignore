@@ -23,6 +23,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# dev log (tee output from dev server)
+dev.log
+
 # IDE
 .idea/
 *.swp
