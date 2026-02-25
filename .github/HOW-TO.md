@@ -21,13 +21,15 @@ Usage: switch to Agent mode, then type:
 
 ## Slash Commands
 
+**`/project-init`** — New project setup. Reads `context.md` + `development-principles.md` and fills in the TODO sections of `copilot-instructions.md`.
+
 **`/review`** — Quick read-only scan (runs in Ask mode). Reports issues without touching code.
 
 **`/check-deps`** — Check all dependencies for newer versions. Shows outdated packages, asks before updating.
 
 **`/seo-launch`** — Pre-launch SEO checklist. Audits the codebase for missing SEO files, then walks you through Google Search Console, Bing, and OG validation.
 
-Usage: type `/review`, `/check-deps`, or `/seo-launch` in chat.
+Usage: type `/project-init`, `/review`, `/check-deps`, or `/seo-launch` in chat.
 
 ## Hooks (auto-runs after edits)
 
@@ -50,6 +52,7 @@ Configured in `.github/hooks/post-edit-format.json`. Requires Prettier installed
 ├── agents/
 │   └── launch-check.agent.md      ← @launch-check agent
 ├── prompts/
+│   ├── project-init.prompt.md        ← /project-init command (fills copilot-instructions from context.md)
 │   ├── review.prompt.md           ← /review command (ask mode, read-only)
 │   ├── check-deps.prompt.md       ← /check-deps command (update checker)
 │   └── seo-launch.prompt.md       ← /seo-launch command (SEO audit + registration)
@@ -66,9 +69,10 @@ src/lib/
 ## New Project Setup
 
 1. Copy `.github/`, `.vscode/`, and `src/lib/` into the new project
-2. Edit `.github/copilot-instructions.md` — update project name, stack, routes, and rules
-3. Run `npm i -D prettier` (for the post-edit hook)
-4. Done — everything else applies automatically
+2. Run `npm i -D prettier` (for the post-edit hook)
+3. Drop a `context.md` in the project root with your product idea, target user, stack additions, and routes
+4. Type `/project-init` — Copilot reads `context.md` + `development-principles.md` and fills in `.github/copilot-instructions.md`
+5. Done — everything else applies automatically
 
 ## Live Log Monitoring
 
