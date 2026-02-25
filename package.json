@@ -1,0 +1,11 @@
+{
+  "name": "modryn-studio-v2",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "check-deps": "npx npm-check-updates"
+  },
+  "devDependencies": {
+    "prettier": "3.8.1"
+  }
+}

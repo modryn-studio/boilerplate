@@ -25,6 +25,7 @@ Read through the codebase and check for ALL of the following:
 - [ ] No `any` types in TypeScript (flag them as warnings)
 - [ ] Dependencies in `package.json` are pinned to exact versions (no `^` or `~`)
 - [ ] No `TODO` or `FIXME` comments that indicate broken functionality
+- [ ] Check for outdated dependencies with `npx npm-check-updates` — report any with available updates
 
 **Next.js Conventions**
 - [ ] Every route in `/app` has a `metadata` export or `generateMetadata` function

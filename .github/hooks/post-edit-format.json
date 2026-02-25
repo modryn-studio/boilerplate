@@ -3,8 +3,8 @@
     "PostToolUse": [
       {
         "type": "command",
-        "command": "npx prettier --write \"$TOOL_INPUT_FILE_PATH\"",
-        "windows": "npx prettier --write \"%TOOL_INPUT_FILE_PATH%\"",
+        "command": "bash -c 'if [ -n \"$TOOL_INPUT_FILE_PATH\" ] && [ -f \"$TOOL_INPUT_FILE_PATH\" ]; then npx prettier --write \"$TOOL_INPUT_FILE_PATH\" 2>/dev/null; fi'",
+        "windows": "powershell -NoProfile -Command \"if ($env:TOOL_INPUT_FILE_PATH -and (Test-Path $env:TOOL_INPUT_FILE_PATH -ErrorAction SilentlyContinue)) { npx prettier --write $env:TOOL_INPUT_FILE_PATH 2>$null }\"",
         "timeout": 15
       }
     ]

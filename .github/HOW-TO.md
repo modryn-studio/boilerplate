@@ -19,11 +19,13 @@ Usage: switch to Agent mode, then type:
 @launch-check run the pre-ship checklist
 ```
 
-## Slash Command
+## Slash Commands
 
 **`/review`** — Quick read-only scan (runs in Ask mode). Reports issues without touching code.
 
-Usage: type `/review` in any chat mode.
+**`/check-deps`** — Check all dependencies for newer versions. Shows outdated packages, asks before updating.
+
+Usage: type `/review` or `/check-deps` in chat.
 
 ## Hooks (auto-runs after edits)
 
@@ -46,7 +48,8 @@ Configured in `.github/hooks/post-edit-format.json`. Requires Prettier installed
 ├── agents/
 │   └── launch-check.agent.md      ← @launch-check agent
 ├── prompts/
-│   └── review.prompt.md           ← /review command (ask mode, read-only)
+│   ├── review.prompt.md           ← /review command (ask mode, read-only)
+│   └── check-deps.prompt.md       ← /check-deps command (update checker)
 ├── hooks/
 │   └── post-edit-format.json      ← Auto-format after agent edits
 .vscode/
