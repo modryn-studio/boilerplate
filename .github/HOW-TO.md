@@ -64,6 +64,13 @@ Configured in `.github/hooks/post-edit-format.json`. Requires Prettier installed
 3. Run `npm i -D prettier` (for the post-edit hook)
 4. Done — everything else applies automatically
 
+## Live Log Monitoring
+
+`Ctrl+Shift+B` starts the dev server and pipes all output to `dev.log`.
+Once it's running, tell Copilot **"check logs"** at any point — it reads `dev.log` and flags errors, slow API requests, or unexpected responses without you having to paste anything.
+
+Prerequisite: the server must be running and `dev.log` must be capturing output before Copilot can read it. If you haven't started the server yet, do that first.
+
 ## Day-to-Day Workflow
 
 1. **Plan** → use Plan mode to scope the feature
