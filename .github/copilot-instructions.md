@@ -10,7 +10,8 @@ I'm not a traditional developer — I build fast using AI-assisted development.
 - Tailwind CSS for styling
 - Vercel for deployment
 - Resend for email capture
-- Vercel Analytics for tracking
+- GA4 for custom event tracking (via `@/lib/analytics.ts` — never call `gtag()` directly)
+- Vercel Analytics free tier for pageviews only — do not use their `track()` API
 - MDX for build log content
 - No database yet — flat files in `/content`
 
@@ -59,6 +60,20 @@ export async function POST(req: Request): Promise<Response> {
 - `end()` logs ✅ with elapsed ms and returns the response
 - `err()` logs ❌ with elapsed ms
 - Never use raw `console.log` in routes — always go through the logger
+
+## Analytics
+
+All custom events MUST go through `analytics` from `@/lib/analytics.ts` — never call `gtag()` directly.
+
+```typescript
+import { analytics } from '@/lib/analytics';
+analytics.track('event_name', { prop: value });
+```
+
+Add a named method to `analytics.ts` for each distinct user action. Named methods are typed and
+discoverable — no magic strings scattered across 10 files.
+
+GA4 measurement ID is loaded via `NEXT_PUBLIC_GA_MEASUREMENT_ID` in `layout.tsx`.
 
 ## Dev Server
 
