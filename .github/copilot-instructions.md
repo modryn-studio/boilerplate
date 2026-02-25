@@ -1,36 +1,27 @@
-# Modryn Studio — Copilot Context
+# [Project Name] — Copilot Context
 
 ## Who I Am
-Solo builder at Modryn Studio (modrynstudio.com). I build AI-powered micro-SaaS tools
-targeting trending search markets. I ship in 48 hours, not months.
-I'm not a traditional developer — I build fast using AI-assisted development.
+<!-- TODO: describe yourself, your product, and your target user -->
 
 ## Stack
 - Next.js 15 (App Router) with TypeScript
 - Tailwind CSS for styling
 - Vercel for deployment
-- Resend for email capture
 - GA4 for custom event tracking (via `@/lib/analytics.ts` — never call `gtag()` directly)
 - Vercel Analytics free tier for pageviews only — do not use their `track()` API
-- MDX for build log content
-- No database yet — flat files in `/content`
+<!-- TODO: add project-specific services (e.g. Resend, Stripe, Prisma, Supabase) -->
 
 ## Project Structure
 ```
 /app                    → Next.js App Router pages
-/content/tools/*.json   → Tool data (adding a tool = adding a JSON file)
-/content/log/*.mdx      → Build log posts (adding a post = adding an MDX file)
 /components             → Reusable UI components
 /lib                    → Utilities, helpers, data fetching
+<!-- TODO: add any project-specific directories -->
 ```
 
 ## Route Map
-- `/`                → Hero + tools grid + build log preview + email signup
-- `/tools`           → All tools (live, beta, coming soon)
-- `/tools/[slug]`    → Individual tool page (SEO magnet + launch page)
-- `/log`             → Build in public feed
-- `/log/[slug]`      → Individual log post
-- `/about`           → Who I am, how I work, my stack
+<!-- TODO: list every route and what it does -->
+- `/`                → (home)
 - `/privacy`         → Privacy policy
 - `/terms`           → Terms of service
 
@@ -93,8 +84,7 @@ Tell Copilot **"check logs"** at any point — it reads `dev.log` and flags erro
 ## Core Rules
 - Every page earns its place — no pages for businesses not yet running
 - Ship fast, stay honest — empty is better than fake
-- The site is a launchpad, not a portfolio
 - Ugly is acceptable, broken is not — polish the core action ruthlessly
-- Build in public — every launch, kill, and milestone gets a log post
+- Ship one killer feature, not ten mediocre ones
 - Instrument analytics before features — data from day one
 - Onboard users to value in under 2 minutes
