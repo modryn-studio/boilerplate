@@ -64,14 +64,16 @@ Configured in `.github/hooks/post-edit-format.json`. Requires Prettier installed
 src/lib/
 ├── route-logger.ts                ← API route logging utility (createRouteLogger)
 └── analytics.ts                   ← GA4 event tracking abstraction (analytics.track)
+context.md                         ← Fill this in per project, then run /project-init
+development-principles.md          ← Permanent product philosophy — do not edit per project
 ```
 
 ## New Project Setup
 
 1. Copy `.github/`, `.vscode/`, and `src/lib/` into the new project
 2. Run `npm i -D prettier` (for the post-edit hook)
-3. Drop a `context.md` in the project root with your product idea, target user, stack additions, and routes
-4. Type `/project-init` — Copilot reads `context.md` and fills in `.github/copilot-instructions.md`
+3. Fill in `context.md` — product idea, target user, stack additions, and routes
+4. Type `/project-init` — Copilot reads `context.md` + `development-principles.md` and fills in `.github/copilot-instructions.md`
 5. Done — everything else applies automatically
 
 ## Live Log Monitoring
