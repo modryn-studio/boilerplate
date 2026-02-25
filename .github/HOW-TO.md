@@ -25,7 +25,9 @@ Usage: switch to Agent mode, then type:
 
 **`/check-deps`** — Check all dependencies for newer versions. Shows outdated packages, asks before updating.
 
-Usage: type `/review` or `/check-deps` in chat.
+**`/seo-launch`** — Pre-launch SEO checklist. Audits the codebase for missing SEO files, then walks you through Google Search Console, Bing, and OG validation.
+
+Usage: type `/review`, `/check-deps`, or `/seo-launch` in chat.
 
 ## Hooks (auto-runs after edits)
 
@@ -49,7 +51,8 @@ Configured in `.github/hooks/post-edit-format.json`. Requires Prettier installed
 │   └── launch-check.agent.md      ← @launch-check agent
 ├── prompts/
 │   ├── review.prompt.md           ← /review command (ask mode, read-only)
-│   └── check-deps.prompt.md       ← /check-deps command (update checker)
+│   ├── check-deps.prompt.md       ← /check-deps command (update checker)
+│   └── seo-launch.prompt.md       ← /seo-launch command (SEO audit + registration)
 ├── hooks/
 │   └── post-edit-format.json      ← Auto-format after agent edits
 .vscode/

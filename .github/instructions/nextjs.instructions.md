@@ -31,6 +31,18 @@ applyTo: "**/*.ts,**/*.tsx,**/app/**"
 - Specify `width` and `height` or use `fill` prop
 - Use `priority` on above-the-fold images
 
+## Required Public Files
+- `public/robots.txt` — allow all crawlers, reference the sitemap:
+  ```
+  User-agent: *
+  Allow: /
+  Sitemap: https://yourdomain.com/sitemap.xml
+  ```
+- `public/manifest.json` — basic PWA manifest with `name`, `description`, `start_url`, `theme_color`, and `icons`.
+- `public/og-image.png` — 1200×630px OG image (separate from any README banner).
+- `src/app/sitemap.ts` — export a `sitemap()` function listing all public routes with `changeFrequency` and `priority`. Next.js serves this as `/sitemap.xml` automatically.
+- Link `manifest.json` in root `layout.tsx` via the `manifest` metadata field.
+
 ## Styling
 - Tailwind CSS utility classes — no CSS modules or styled-components
 - Use `cn()` helper (clsx + tailwind-merge) for conditional classes
