@@ -15,11 +15,17 @@ applyTo: "**/*.ts,**/*.tsx,**/app/**"
 - Every route segment should have an `error.tsx` boundary
 - Use `loading.tsx` for streaming/suspense fallbacks
 - Dynamic routes use `[param]` folder naming
+- `src/instrumentation-client.ts` — optional root file for early client-side monitoring setup (analytics init, error tracking); runs before any app code
 
 ## SEO & Metadata
 - Export a `metadata` object or `generateMetadata()` function from every `page.tsx` — never use raw `<head>` or `<title>` tags
 - Use `generateMetadata()` for dynamic routes (e.g., `/tools/[slug]`)
 - Include `title`, `description`, and `openGraph` in every metadata export
+- Export `viewport` separately from `metadata` — do not nest it inside the metadata object:
+  ```ts
+  import type { Viewport } from 'next';
+  export const viewport: Viewport = { themeColor: '#000000' };
+  ```
 
 ## Data & Rendering
 - Prefer Server Actions over API routes for mutations
