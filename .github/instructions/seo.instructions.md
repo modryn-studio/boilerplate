@@ -1,4 +1,6 @@
 ---
+name: "SEO Rules"
+description: "Metadata exports, Open Graph, semantic HTML, heading hierarchy, and accessibility rules"
 applyTo: "**/*.ts,**/*.tsx"
 ---
 # SEO Rules

@@ -1,6 +1,7 @@
 ---
 name: review
 description: "Quick read-only scan of the codebase. Reports issues without making any changes."
+agent: ask
 ---
 # Quick Review
 

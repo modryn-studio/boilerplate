@@ -1,7 +1,8 @@
 ---
 name: launch-check
 description: "Pre-ship checklist: scans the codebase for issues, auto-fixes what it can, runs lint and build, commits fixes, and reports what's left. Never pushes to remote."
-tools: ['read', 'editFiles', 'runInTerminal', 'search', 'codebase']
+argument-hint: "Run the pre-ship checklist"
+tools: ['codebase', 'editFiles', 'runInTerminal', 'search', 'problems', 'changes']
 ---
 # Modryn Launch Check Agent
 

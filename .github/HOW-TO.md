@@ -21,13 +21,18 @@ Usage: switch to Agent mode, then type:
 
 ## Slash Command
 
-**`/review`** — Quick read-only scan. Reports issues without touching code.
+**`/review`** — Quick read-only scan (runs in Ask mode). Reports issues without touching code.
 
 Usage: type `/review` in any chat mode.
 
+## Hooks (auto-runs after edits)
+
+**PostToolUse** — Auto-formats files with Prettier after the agent edits them.
+Configured in `.github/hooks/post-edit-format.json`. Requires Prettier installed (`npm i -D prettier`).
+
 ## MCP Servers
 
-- **GitHub** — create issues, PRs, manage repos from chat (auto-connected)
+- **GitHub** — create issues, PRs, manage repos from chat (type `http`)
 - **Fetch** — pull live web pages into context (requires `uvx` / `uv` installed)
 
 ## File Map
@@ -41,17 +46,20 @@ Usage: type `/review` in any chat mode.
 ├── agents/
 │   └── launch-check.agent.md      ← @launch-check agent
 ├── prompts/
-│   └── review.prompt.md           ← /review command
+│   └── review.prompt.md           ← /review command (ask mode, read-only)
+├── hooks/
+│   └── post-edit-format.json      ← Auto-format after agent edits
 .vscode/
 ├── settings.json                  ← Agent mode enabled
-└── mcp.json                       ← MCP server config
+└── mcp.json                       ← MCP server config (http + stdio)
 ```
 
 ## New Project Setup
 
 1. Copy `.github/` and `.vscode/` folders into the new project
 2. Edit `.github/copilot-instructions.md` — update project name, stack, routes, and rules
-3. Done — everything else applies automatically
+3. Run `npm i -D prettier` (for the post-edit hook)
+4. Done — everything else applies automatically
 
 ## Day-to-Day Workflow
 
@@ -60,3 +68,11 @@ Usage: type `/review` in any chat mode.
 3. **Check** → type `/review` for a quick scan
 4. **Ship** → type `@launch-check run the pre-ship checklist`
 5. **Push** → review the commit diff, then `git push` yourself
+
+## Useful Commands
+
+- `/init` — auto-generate copilot-instructions.md from your project
+- `/hooks` — configure hooks interactively
+- `/agents` — manage custom agents
+- `/prompts` — manage prompt files
+- `Configure Chat (gear icon) > Diagnostics` — see loaded configs and errors

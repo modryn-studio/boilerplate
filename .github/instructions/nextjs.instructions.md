@@ -1,4 +1,6 @@
 ---
+name: "Next.js 15 Conventions"
+description: "App Router patterns, Server Components, metadata, and file conventions for Next.js 15"
 applyTo: "**/*.ts,**/*.tsx,**/app/**"
 ---
 # Next.js 15 App Router Conventions

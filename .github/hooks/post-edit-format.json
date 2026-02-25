@@ -1,0 +1,12 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "npx prettier --write \"$TOOL_INPUT_FILE_PATH\"",
+        "windows": "npx prettier --write \"%TOOL_INPUT_FILE_PATH%\"",
+        "timeout": 15
+      }
+    ]
+  }
+}
