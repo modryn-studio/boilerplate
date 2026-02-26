@@ -29,13 +29,11 @@ Usage: switch to Agent mode, then type:
 
 Usage: type any slash command in chat.
 
-> Note: `/tool` is not included here — it’s project-specific (requires `content/tools/` registry pattern). Copy `tool.prompt.md` into your project’s `.github/prompts/` to activate it.
-
 ## Hooks (auto-runs after edits)
 
 **Format on Save** — Files are automatically formatted with Prettier whenever you save.
 
-Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires the [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension (VS Code will prompt you to install it — it’s listed in `.vscode/extensions.json`). Formatting rules live in `.prettierrc`.
+Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires the [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension (VS Code will prompt you to install it — it's listed in `.vscode/extensions.json`). Formatting rules live in `.prettierrc`.
 
 ## MCP Servers
 
@@ -54,7 +52,6 @@ Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires 
 │   └── check.agent.md             ← @check agent (pre-ship quality gate)
 ├── prompts/
 │   ├── init.prompt.md             ← /init command (fills copilot-instructions + site.ts from context.md + brand.md)
-│   ├── tool.prompt.md             ← /tool command template (project-specific — not active by default)
 │   ├── deps.prompt.md             ← /deps command (update checker)
 │   └── seo.prompt.md              ← /seo command (SEO audit + registration)
 .vscode/
@@ -75,7 +72,7 @@ development-principles.md          ← Permanent product philosophy — do not e
 ## New Project Setup
 
 1. Copy `.github/`, `.vscode/`, `src/lib/`, and `src/config/` into the new project
-2. Run `npm install` — this installs Prettier automatically (it’s in `devDependencies`)
+2. Run `npm install` — this installs Prettier automatically (it's in `devDependencies`)
 3. Fill in `context.md` — product idea, target user, stack additions, and routes
 4. Fill in `brand.md` — voice, visual rules, emotional arc, and copy examples
 5. Type `/init` — Copilot reads all three files and fills in `.github/copilot-instructions.md` + `src/config/site.ts`
@@ -84,9 +81,9 @@ development-principles.md          ← Permanent product philosophy — do not e
 ## Live Log Monitoring
 
 `Ctrl+Shift+B` starts the dev server and pipes all output to `dev.log`.
-Once it’s running, tell Copilot **"check logs"** at any point — it reads `dev.log` and flags errors, slow API requests, or unexpected responses without you having to paste anything.
+Once it's running, tell Copilot **"check logs"** at any point — it reads `dev.log` and flags errors, slow API requests, or unexpected responses without you having to paste anything.
 
-Prerequisite: the server must be running and `dev.log` must be capturing output before Copilot can read it. If you haven’t started the server yet, do that first.
+Prerequisite: the server must be running and `dev.log` must be capturing output before Copilot can read it. If you haven't started the server yet, do that first.
 
 ## Day-to-Day Workflow
 
