@@ -25,6 +25,8 @@ Usage: switch to Agent mode, then type:
 
 **`/deps`** — Check all dependencies for newer versions. Shows outdated packages, asks before updating.
 
+**`/log`** — Draft a build log post for modrynstudio.com. Reads recent commits from this repo, asks for context, then opens a PR on `modryn-studio/modryn-studio-v2` with a draft MDX post. Fill in the TODOs, merge to publish.
+
 **`/seo`** — Pre-launch SEO checklist. Auto-generates missing SEO files, then walks you through Google Search Console, Bing, and OG validation.
 
 Usage: type any slash command in chat.
@@ -53,6 +55,7 @@ Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires 
 ├── prompts/
 │   ├── init.prompt.md             ← /init command (fills copilot-instructions + site.ts from context.md + brand.md)
 │   ├── deps.prompt.md             ← /deps command (update checker)
+│   ├── log.prompt.md              ← /log command (draft build log post → PR on modryn-studio-v2)
 │   └── seo.prompt.md              ← /seo command (SEO audit + registration)
 .vscode/
 ├── settings.json                  ← Agent mode enabled, formatOnSave, Prettier as default formatter
