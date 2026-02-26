@@ -5,6 +5,10 @@
   "scripts": {
     "check-deps": "npx npm-check-updates"
   },
+  "dependencies": {
+    "nodemailer": "^8.0.1",
+    "resend": "6.9.2"
+  },
   "devDependencies": {
     "prettier": "3.8.1",
     "prettier-plugin-tailwindcss": "0.7.2"
