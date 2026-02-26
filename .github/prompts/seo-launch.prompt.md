@@ -68,6 +68,51 @@ Sitemap: https://DOMAIN.com/sitemap.xml
    icons: { icon: "/icon.png", apple: "/apple-icon.png" },
    ```
 
+**`public/manifest.json`** — if missing, read the site name, description, and brand colors from `layout.tsx` metadata and `copilot-instructions.md`, then create:
+```json
+{
+  "name": "<site name from layout.tsx title>",
+  "short_name": "<abbreviated name>",
+  "description": "<site description from layout.tsx>",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "<dark bg from brand, e.g. #0a0a0a>",
+  "theme_color": "<accent color from brand, e.g. #f59e0b>",
+  "icons": [
+    { "src": "/icon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
+```
+Then ensure `layout.tsx` metadata includes `manifest: "/manifest.json"`.
+
+**JSON-LD in `layout.tsx`** — if a `<script type="application/ld+json">` block is absent from the root layout, add a `WebSite` + `Organization` schema. Read the site name, URL, and description from the existing metadata in `layout.tsx`. Insert it inside the `<body>` tag (before `{children}`):
+```tsx
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://DOMAIN.com/#website",
+          "url": "https://DOMAIN.com",
+          "name": "<site name>",
+          "description": "<site description>",
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://DOMAIN.com/#organization",
+          "url": "https://DOMAIN.com",
+          "name": "<site name>",
+          "logo": "https://DOMAIN.com/brand/logomark.png",
+        },
+      ],
+    }),
+  }}
+/>
+```
+
 Report which files were created vs already existed.
 
 ## Step 1: Code Audit
@@ -82,7 +127,7 @@ Check the codebase for:
 - [ ] `public/robots.txt` exists and references the sitemap URL
 - [ ] `src/app/sitemap.ts` exists and lists all public routes
 - [ ] `public/manifest.json` exists
-- [ ] JSON-LD `SoftwareApplication` script in `layout.tsx`
+- [ ] JSON-LD `WebSite` + `Organization` script in `layout.tsx`
 - [ ] `package.json` has a `description` field
 
 Report PASS / MISSING for each item with file paths for anything missing.
