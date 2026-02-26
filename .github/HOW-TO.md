@@ -23,9 +23,11 @@ Usage: switch to Agent mode, then type:
 
 **`/init`** — New project setup. Reads `context.md` + `brand.md` + `development-principles.md` and fills in the TODO sections of `copilot-instructions.md` and `src/config/site.ts`. Run this once at the start of every new project.
 
-**`/deps`** — Check all dependencies for newer versions. Shows outdated packages, asks before updating.
+**`/tool`** — Register this project as a tool on modrynstudio.com. Opens a PR on `modryn-studio/modryn-studio-v2` with the tool JSON. Run it when you add the tool and again when you ship (to flip status to `live`, add URL, screenshot, and launch date).
 
 **`/log`** — Draft a build log post for modrynstudio.com. Reads recent commits from this repo, asks for context, then opens a PR on `modryn-studio/modryn-studio-v2` with a draft MDX post. Fill in the TODOs, merge to publish.
+
+**`/deps`** — Check all dependencies for newer versions. Shows outdated packages, asks before updating.
 
 **`/seo`** — Pre-launch SEO checklist. Auto-generates missing SEO files, then walks you through Google Search Console, Bing, and OG validation.
 
@@ -54,6 +56,7 @@ Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires 
 │   └── check.agent.md             ← @check agent (pre-ship quality gate)
 ├── prompts/
 │   ├── init.prompt.md             ← /init command (fills copilot-instructions + site.ts from context.md + brand.md)
+│   ├── tool.prompt.md             ← /tool command (register/update tool on modrynstudio.com → PR)
 │   ├── deps.prompt.md             ← /deps command (update checker)
 │   ├── log.prompt.md              ← /log command (draft build log post → PR on modryn-studio-v2)
 │   └── seo.prompt.md              ← /seo command (SEO audit + registration)
