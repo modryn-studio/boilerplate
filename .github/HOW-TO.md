@@ -41,8 +41,7 @@ Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires 
 
 ## MCP Servers
 
-- **GitHub** — create issues, PRs, manage repos from chat (type `http`)
-- **Fetch** — pull live web pages into context (requires `uvx` / `uv` installed)
+- **GitHub** — create issues, PRs, manage repos from chat
 
 ## File Map
 
@@ -63,7 +62,7 @@ Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires 
 .vscode/
 ├── settings.json                  ← Agent mode enabled, formatOnSave, Prettier as default formatter
 ├── extensions.json                ← Recommends Prettier extension on first open
-└── mcp.json                       ← MCP server config (http + stdio)
+└── mcp.json                       ← MCP server config (GitHub only)
 src/config/
 └── site.ts                        ← Single source of truth: site name, URL, description, brand colors
 src/lib/
