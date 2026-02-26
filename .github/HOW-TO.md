@@ -23,19 +23,19 @@ Usage: switch to Agent mode, then type:
 
 **`/project-init`** — New project setup. Reads `context.md` + `brand.md` + `development-principles.md` and fills in the TODO sections of `copilot-instructions.md`. Run this once at the start of every new project.
 
-**`/add-tool`** — Register a new tool on the site. Each tool (live, beta, or coming soon) lives as a JSON file in `content/tools/`. This command asks you 5 questions and creates that file. Without it, the tool won't appear on the site.
-
 **`/check-deps`** — Check all dependencies for newer versions. Shows outdated packages, asks before updating.
 
 **`/seo-launch`** — Pre-launch SEO checklist. Audits the codebase for missing SEO files, then walks you through Google Search Console, Bing, and OG validation.
 
 Usage: type any slash command in chat.
 
+> Note: `/add-tool` is not included here — it's project-specific. Add it to your own `.github/prompts/` if your project has a tool registry.
+
 ## Hooks (auto-runs after edits)
 
-**PostToolUse** — Auto-formats files with Prettier after the agent edits them.
+**Format on Save** — Files are automatically formatted with Prettier whenever you save.
 
-> ⚠️ Currently configured but not active. The hook file exists at `.github/hooks/post-edit-format.json` but VS Code requires it to be referenced in `.vscode/settings.json` via `github.copilot.chat.agent.hooks` to take effect. To enable: add that key pointing to the file, and make sure Prettier is installed (`npm i -D prettier`).
+Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires the [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extension (VS Code will prompt you to install it — it's listed in `.vscode/extensions.json`). Formatting rules live in `.prettierrc`.
 
 ## MCP Servers
 
@@ -54,13 +54,11 @@ Usage: type any slash command in chat.
 │   └── check.agent.md             ← @check agent (pre-ship quality gate)
 ├── prompts/
 │   ├── project-init.prompt.md     ← /project-init command (fills copilot-instructions from context.md + brand.md)
-│   ├── add-tool.prompt.md         ← /add-tool command (creates content/tools/<slug>.json)
 │   ├── check-deps.prompt.md       ← /check-deps command (update checker)
 │   └── seo-launch.prompt.md       ← /seo-launch command (SEO audit + registration)
-├── hooks/
-│   └── post-edit-format.json      ← Auto-format after agent edits (not yet active — see Hooks above)
 .vscode/
-├── settings.json                  ← Agent mode enabled
+├── settings.json                  ← Agent mode enabled, formatOnSave, Prettier as default formatter
+├── extensions.json                ← Recommends Prettier extension on first open
 └── mcp.json                       ← MCP server config (http + stdio)
 src/lib/
 ├── cn.ts                          ← Tailwind class merge utility (clsx + tailwind-merge)
@@ -74,7 +72,7 @@ development-principles.md          ← Permanent product philosophy — do not e
 ## New Project Setup
 
 1. Copy `.github/`, `.vscode/`, and `src/lib/` into the new project
-2. Run `npm i -D prettier` (for the post-edit hook)
+2. Run `npm install` — this installs Prettier automatically (it's in `devDependencies`)
 3. Fill in `context.md` — product idea, target user, stack additions, and routes
 4. Fill in `brand.md` — voice, visual rules, emotional arc, and copy examples
 5. Type `/project-init` — Copilot reads all three files and fills in `.github/copilot-instructions.md`
