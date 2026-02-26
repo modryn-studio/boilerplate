@@ -21,7 +21,7 @@ Usage: switch to Agent mode, then type:
 
 ## Slash Commands
 
-**`/project-init`** — New project setup. Reads `context.md` + `development-principles.md` and fills in the TODO sections of `copilot-instructions.md`.
+**`/project-init`** — New project setup. Reads `context.md` + `development-principles.md` + `brand.md` and fills in the TODO sections of `copilot-instructions.md`.
 
 **`/add-tool`** — Add a new tool to the site. Asks 5 questions, creates `content/tools/<slug>.json`.
 
@@ -65,7 +65,8 @@ src/lib/
 ├── cn.ts                          ← Tailwind class merge utility (clsx + tailwind-merge)
 ├── route-logger.ts                ← API route logging utility (createRouteLogger)
 └── analytics.ts                   ← GA4 event tracking abstraction (analytics.track)
-context.md                         ← Fill this in per project, then run /project-init
+context.md                         ← Fill this in per project (product facts + routes)
+brand.md                           ← Fill this in per project (voice, visuals, copy examples)
 development-principles.md          ← Permanent product philosophy — do not edit per project
 ```
 
@@ -74,8 +75,9 @@ development-principles.md          ← Permanent product philosophy — do not e
 1. Copy `.github/`, `.vscode/`, and `src/lib/` into the new project
 2. Run `npm i -D prettier` (for the post-edit hook)
 3. Fill in `context.md` — product idea, target user, stack additions, and routes
-4. Type `/project-init` — Copilot reads `context.md` + `development-principles.md` and fills in `.github/copilot-instructions.md`
-5. Done — everything else applies automatically
+4. Fill in `brand.md` — voice, visual rules, emotional arc, and copy examples
+5. Type `/project-init` — Copilot reads all three files and fills in `.github/copilot-instructions.md`
+6. Done — everything else applies automatically
 
 ## Live Log Monitoring
 
