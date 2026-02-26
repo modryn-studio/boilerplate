@@ -53,13 +53,15 @@ Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires 
 ├── agents/
 │   └── check.agent.md             ← @check agent (pre-ship quality gate)
 ├── prompts/
-│   ├── project-init.prompt.md     ← /project-init command (fills copilot-instructions from context.md + brand.md)
+│   ├── project-init.prompt.md     ← /project-init command (fills copilot-instructions + site.ts from context.md + brand.md)
 │   ├── check-deps.prompt.md       ← /check-deps command (update checker)
 │   └── seo-launch.prompt.md       ← /seo-launch command (SEO audit + registration)
 .vscode/
 ├── settings.json                  ← Agent mode enabled, formatOnSave, Prettier as default formatter
 ├── extensions.json                ← Recommends Prettier extension on first open
 └── mcp.json                       ← MCP server config (http + stdio)
+src/config/
+└── site.ts                        ← Single source of truth: site name, URL, description, brand colors
 src/lib/
 ├── cn.ts                          ← Tailwind class merge utility (clsx + tailwind-merge)
 ├── route-logger.ts                ← API route logging utility (createRouteLogger)
@@ -71,11 +73,11 @@ development-principles.md          ← Permanent product philosophy — do not e
 
 ## New Project Setup
 
-1. Copy `.github/`, `.vscode/`, and `src/lib/` into the new project
+1. Copy `.github/`, `.vscode/`, `src/lib/`, and `src/config/` into the new project
 2. Run `npm install` — this installs Prettier automatically (it's in `devDependencies`)
 3. Fill in `context.md` — product idea, target user, stack additions, and routes
 4. Fill in `brand.md` — voice, visual rules, emotional arc, and copy examples
-5. Type `/project-init` — Copilot reads all three files and fills in `.github/copilot-instructions.md`
+5. Type `/project-init` — Copilot reads all three files and fills in `.github/copilot-instructions.md` + `src/config/site.ts`
 6. Done — everything else applies automatically
 
 ## Live Log Monitoring
