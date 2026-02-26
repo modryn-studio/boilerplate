@@ -47,6 +47,7 @@ Read through the codebase and check for ALL of the following:
 - [ ] No hardcoded API keys, secrets, tokens, or passwords in source files
 - [ ] Environment variables used for all sensitive values
 - [ ] `.env` files are in `.gitignore`
+- [ ] `NEXT_PUBLIC_GA_MEASUREMENT_ID` is present in `.env.local` — without it GA4 silently won’t fire (WARN if missing, not FAIL)
 
 **Code Quality**
 - [ ] No `console.log` statements left in production code (console.error/warn are OK)
@@ -93,7 +94,7 @@ Run in terminal:
 ```
 npx next lint --fix
 ```
-If lint errors remain that can't be auto-fixed, document them in the report.
+If lint errors remain that can’t be auto-fixed, document them in the report.
 
 ### Phase 4: Build
 Run in terminal:
