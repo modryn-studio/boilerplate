@@ -25,6 +25,39 @@
 - `/privacy`         → Privacy policy
 - `/terms`           → Terms of service
 
+## README Standard
+
+Every project README follows this exact structure — no more, no less:
+
+```markdown
+![Project Name](public/brand/banner.png)
+
+# Project Name
+
+One-line tagline. Outcome-focused — lead with what the user gets, not the technology.
+
+→ [domain.com](https://domain.com)
+
+---
+
+Next.js · TypeScript · Tailwind CSS · Vercel
+```
+
+Rules:
+- **Banner image** — always first. Path is `public/brand/banner.png`.
+- **H1 title** — product name only, no subtitle.
+- **Tagline** — one sentence. What the user gets. No buzzwords ("powerful", "seamless", "AI-powered").
+- **Live link** — `→ [domain.com](https://domain.com)` format. Always present if live.
+- **Divider** — `---` separator before the stack line.
+- **Stack line** — `·`-separated list of core tech only. No version numbers, no descriptions.
+- **Nothing else.** No install instructions, no contributing section, no architecture diagrams, no screenshots beyond the banner. Real docs go in `/docs` or on the live site.
+
+When adding a badge row (optional, for open source tools/libraries only):
+- Place it between the H1 and the tagline
+- Use shields.io format: `[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)`
+- Keep it to 3 badges max: typically license + CI status + live site
+- Apps (not libraries) should skip badges entirely
+
 ## API Route Logging
 
 Every new API route (`app/api/**/route.ts`) MUST use `createRouteLogger` from `@/lib/route-logger`.
