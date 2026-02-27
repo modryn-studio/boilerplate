@@ -33,7 +33,8 @@ Do not touch API Route Logging, Analytics, Dev Server, Code Style, or Core Rules
 
 Finally, wire `FeedbackWidget` into `src/app/layout.tsx`:
 - Add `import FeedbackWidget from '@/components/feedback-widget'` with the other component imports
-- Add `<FeedbackWidget />` as the last child inside the root layout wrapper div, after `<Footer />`
+- Add `<FeedbackWidget />` as the last child inside `<body>`, before `</body>`
+- The widget uses CSS custom properties (`--color-border`, `--color-surface`, `--color-accent`, etc.) — verify these exist in `globals.css`. If not, add them to `:root`.
 - This must be present in every project — it's how Luke collects feedback from day one
 
 After editing, confirm what was filled in and flag anything that was missing from context.md or brand.md that Luke should provide.
