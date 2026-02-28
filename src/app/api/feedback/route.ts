@@ -18,10 +18,10 @@ const VALID_TYPES: FeedbackType[] = ['newsletter', 'feedback', 'bug'];
 function buildHtml(body: FeedbackBody): string {
   const heading =
     body.type === 'newsletter'
-      ? '\uD83D\uDCEC New Newsletter Signup'
+      ? '📬 New Newsletter Signup'
       : body.type === 'feedback'
-        ? '\uD83D\uDCAC New Feedback'
-        : '\uD83D\uDC1B Bug Report';
+        ? '💬 New Feedback'
+        : '🐛 Bug Report';
 
   return `
     <div style="font-family: monospace; padding: 20px; max-width: 500px;">
@@ -74,9 +74,9 @@ export async function POST(req: Request): Promise<Response> {
     });
 
     const subjectMap: Record<FeedbackType, string> = {
-      newsletter: `\uD83D\uDCEC New signup: ${body.email}`,
-      feedback: `\uD83D\uDCAC Feedback${body.email ? ` from ${body.email}` : ''}`,
-      bug: `\uD83D\uDC1B Bug report${body.email ? ` from ${body.email}` : ''}`,
+      newsletter: `📬 New signup: ${body.email}`,
+      feedback: `💬 Feedback${body.email ? ` from ${body.email}` : ''}`,
+      bug: `🐛 Bug report${body.email ? ` from ${body.email}` : ''}`,
     };
 
     await transporter.sendMail({
@@ -89,14 +89,19 @@ export async function POST(req: Request): Promise<Response> {
     log.info(ctx.reqId, 'Email sent', { to: feedbackTo });
 
     // Add to Resend Contacts for newsletter signups (best-effort — never blocks the response)
-    // Contacts are global in Resend v2+ — no audience ID needed
+    // Uses RESEND_SEGMENT_ID to keep contacts segmented per project (same team, different segments)
     if (body.type === 'newsletter') {
       const resendKey = process.env.RESEND_API_KEY;
       if (resendKey) {
         try {
           const resend = new Resend(resendKey);
-          await resend.contacts.create({ email: body.email!, unsubscribed: false });
-          log.info(ctx.reqId, 'Resend contact created');
+          const segmentId = process.env.RESEND_SEGMENT_ID;
+          await resend.contacts.create({
+            email: body.email!,
+            unsubscribed: false,
+            ...(segmentId && { segments: [{ id: segmentId }] }),
+          });
+          log.info(ctx.reqId, 'Resend contact created', { segmentId });
         } catch (resendError) {
           // Non-fatal — inbox notification already sent, list add failed silently
           log.warn(ctx.reqId, 'Resend contact creation failed', { error: resendError });
