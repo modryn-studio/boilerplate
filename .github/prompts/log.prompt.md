@@ -1,10 +1,10 @@
 ---
 name: log
-description: Drafts a build log post for modrynstudio.com from this project's recent git activity. Opens a PR on modryn-studio-v2 — merge when ready to publish.
+description: Drafts a build log post for modrynstudio.com from this project's git activity. Opens a PR on modryn-studio-v2 — merge when ready to publish.
 agent: agent
 ---
 
-Run `git log --oneline -20` in the terminal to get the last 20 commits from this repo.
+Run `git log --oneline` in the terminal to get the full commit history from this repo.
 
 Ask Luke: "Anything in that list I should skip, or any context I should know before drafting?"
 
@@ -24,7 +24,7 @@ Then:
      The `tag` field must be the project slug. Use:
      - `meta` — process/workflow/how-I-work posts
      - the project slug (e.g. `project-loom`, `trend-detector`) — for anything specific to this project
-     Ask Luke which tag to use if it isn't obvious.
+         Ask Luke which tag to use if it isn't obvious.
    - Post body:
 
      **What shipped** — bullet list of the 3–5 most significant things as human outcomes. Not "feat: add X" but "X is now live".
