@@ -49,7 +49,7 @@ Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires 
 .github/
 ├── copilot-instructions.md        ← Always-on context (edit per project)
 ├── instructions/
-│   ├── nextjs.instructions.md     ← Auto-applied to .ts/.tsx files
+│   ├── nextjs.instructions.md    ← Auto-applied to .ts/.tsx files
 │   └── seo.instructions.md        ← Auto-applied to .ts/.tsx files
 ├── agents/
 │   └── check.agent.md             ← @check agent (pre-ship quality gate)
@@ -69,6 +69,8 @@ src/lib/
 ├── cn.ts                          ← Tailwind class merge utility (clsx + tailwind-merge)
 ├── route-logger.ts                ← API route logging utility (createRouteLogger)
 └── analytics.ts                   ← GA4 event tracking abstraction (analytics.track)
+scripts/
+└── generate-assets.ps1            ← Generates all favicons, icons, OG image, and banner from your logomark
 context.md                         ← Fill this in per project (product facts + routes)
 brand.md                           ← Fill this in per project (voice, visuals, copy examples)
 development-principles.md          ← Permanent product philosophy — do not edit per project
@@ -76,12 +78,43 @@ development-principles.md          ← Permanent product philosophy — do not e
 
 ## New Project Setup
 
-1. Copy `.github/`, `.vscode/`, `src/lib/`, and `src/config/` into the new project
+1. Copy `.github/`, `.vscode/`, `src/lib/`, `src/config/`, and `scripts/` into the new project
 2. Run `npm install` — this installs Prettier automatically (it's in `devDependencies`)
 3. Fill in `context.md` — product idea, target user, stack additions, and routes
 4. Fill in `brand.md` — voice, visual rules, emotional arc, and copy examples
 5. Type `/init` — Copilot reads all three files and fills in `.github/copilot-instructions.md` + `src/config/site.ts`
-6. Done — everything else applies automatically
+6. Drop your logomark and run the asset generator (see below)
+7. Done — everything else applies automatically
+
+## Brand Assets
+
+Drop your logomark, run one script, get all icons and images generated automatically.
+
+**Required:**
+- `public/brand/logomark.png` — 1024×1024, your mark on a transparent background
+
+**Optional:**
+- `public/brand/logomark-dark.png` — white/light version of the mark. If present, enables light/dark favicon switching. If absent, `logomark.png` is used for both modes (fine for colored marks).
+- `public/brand/banner.png` — 1280×320 README header. Auto-generated from your logomark if missing.
+
+Then run (requires [ImageMagick](https://imagemagick.org)):
+```powershell
+.\scripts\generate-assets.ps1
+```
+
+Re-run any time you update the logomark or after filling in `src/config/site.ts` — the script stamps your site name on the OG image and banner.
+
+**What gets generated:**
+
+| File | Purpose |
+|---|---|
+| `public/icon-light.png` | Favicon in light mode |
+| `public/icon-dark.png` | Favicon in dark mode |
+| `public/icon.png` | 1024×1024 for manifest + JSON-LD |
+| `public/favicon.ico` | Legacy fallback (48/32/16px) |
+| `src/app/apple-icon.png` | iOS home screen icon |
+| `public/og-image.png` | 1200×630 social card |
+| `public/brand/banner.png` | README header (if not provided) |
 
 ## Live Log Monitoring
 
