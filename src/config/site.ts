@@ -10,17 +10,18 @@ export const site = {
   // Longer form for social cards
   ogTitle: 'TODO: OG title (50–60 chars)',
   ogDescription: 'TODO: OG description (110–160 chars)',
-  founder: 'TODO: founder name',
+  founder: 'Luke Hanner',
   // Brand colors — used in manifest theme_color / background_color
   accent: '#F97415', // TODO: brand accent hex
   bg: '#050505', // TODO: brand background hex
-  // Social profiles — used in footer links and Twitter card metadata
-  // Fill in before running /launch. Add or remove entries as needed.
+  // Social profiles — used in footer links and Twitter card metadata.
+  // twitter/twitterHandle/devto/shipordie are universal — pre-filled.
+  // github is per-project — update to this repo's URL.
   social: {
-    twitter: 'https://x.com/TODO',
-    twitterHandle: '@TODO',
-    github: 'https://github.com/TODO',
-    // devto: 'https://dev.to/TODO',
-    // shipordie: 'https://shipordie.club/TODO',
+    twitter: 'https://x.com/lukehanner',
+    twitterHandle: '@lukehanner',
+    github: 'https://github.com/TODO', // TODO: this repo's URL
+    devto: 'https://dev.to/lukehanner',
+    shipordie: 'https://shipordie.club/lukehanner',
   },
 } as const;
