@@ -29,6 +29,8 @@ Usage: switch to Agent mode, then type:
 
 **`/deps`** — Check all dependencies for newer versions. Shows outdated packages, asks before updating.
 
+**`/assets`** — Generate all favicons, icons, OG image, and README banner from your logomark. Checks prerequisites (logomark exists, ImageMagick installed), runs the generator, and commits the output.
+
 **`/seo`** — Pre-launch SEO checklist. Auto-generates missing SEO files, then walks you through Google Search Console, Bing, and OG validation.
 
 **`/launch`** — Distribution checklist. Run after `/seo`. Audits and fixes sharing hooks, social footer links, dynamic OG images, and FAQPage schema. Then walks you through the launch day posting sequence: build log → Ship or Die → X → dev.to → HN → Reddit → Product Hunt (optional).
@@ -57,6 +59,7 @@ Configured via `editor.formatOnSave: true` in `.vscode/settings.json`. Requires 
 │   └── check.agent.md             ← @check agent (pre-ship quality gate)
 ├── prompts/
 │   ├── init.prompt.md             ← /init command (fills copilot-instructions + site.ts from context.md + brand.md)
+│   ├── assets.prompt.md           ← /assets command (generate favicons, icons, OG image, banner)
 │   ├── tool.prompt.md             ← /tool command (register/update tool on modrynstudio.com → PR)
 │   ├── deps.prompt.md             ← /deps command (update checker)
 │   ├── log.prompt.md              ← /log command (draft build log post → PR on modryn-studio-v2)
@@ -96,7 +99,7 @@ development-principles.md          ← Permanent product philosophy — do not e
 5. Fill in `context.md` — product idea, target user, stack additions, routes, and this project's GitHub URL in Social Profiles
 6. Fill in `brand.md` — voice, visual rules, emotional arc, and copy examples
 7. Type `/init` — Copilot reads all three files and fills in `.github/copilot-instructions.md` + `src/config/site.ts`
-8. Drop your logomark and run the asset generator (see below)
+8. Drop your logomark at `public/brand/logomark.png` and type `/assets`
 9. Push to `main` — you're live on the new repo
 
 ### Option B — Layer onto an existing Next.js project
@@ -105,11 +108,11 @@ development-principles.md          ← Permanent product philosophy — do not e
 2. Run `npm install` — installs Prettier (Next.js is already in your project)
 3. Fill in `context.md` and `brand.md`
 4. Type `/init`
-5. Drop your logomark and run the asset generator (see below)
+5. Drop your logomark at `public/brand/logomark.png` and type `/assets`
 
 ## Brand Assets
 
-Drop your logomark, run one script, get all icons and images generated automatically.
+Drop your logomark, type `/assets`, done.
 
 **Required:**
 - `public/brand/logomark.png` — 1024×1024, your mark on a transparent background
@@ -118,7 +121,10 @@ Drop your logomark, run one script, get all icons and images generated automatic
 - `public/brand/logomark-dark.png` — white/light version of the mark. If present, enables light/dark favicon switching. If absent, `logomark.png` is used for both modes (fine for colored marks).
 - `public/brand/banner.png` — 1280×320 README header. Auto-generated from your logomark if missing.
 
-Then run (requires [ImageMagick](https://imagemagick.org)):
+Then type `/assets` in chat — it checks prerequisites, runs the generator, and commits the output automatically.
+
+Or run directly (requires [ImageMagick](https://imagemagick.org)):
+
 ```powershell
 .\scripts\generate-assets.ps1
 ```
