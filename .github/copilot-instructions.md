@@ -13,6 +13,16 @@ mode: <!-- modryn-app | standalone-subdomain | standalone-domain -->
 url:  <!-- canonical URL -->
 basePath: <!-- /tools/your-slug   (empty for standalone modes) -->
 
+<!-- modryn-app rewrite architecture (read this if mode is modryn-app):
+     This tool is served at modrynstudio.com/tools/[slug] via a Next.js rewrite in modryn-studio-v2/next.config.ts.
+     - The rewrite is managed by running /deploy inside modryn-studio-v2 — NEVER add or edit it from the tool repo.
+     - The /tools/[slug] landing page is rendered by modryn-studio-v2, not this repo.
+     - basePath in this repo's next.config.ts must match the rewrite source path exactly.
+     - BASE_PATH in src/lib/base-path.ts must match basePath — all fetch() calls to API routes use it.
+     - The "Try it" url in the tool JSON should point to the Vercel URL (e.g. slug.vercel.app/tools/slug)
+       if the tool has its own GA4 property, or modrynstudio.com/tools/slug/ (trailing slash) to keep
+       all traffic in modrynstudio GA4. -->
+
 ## Stack
 - Next.js 15 (App Router) with TypeScript
 - Tailwind CSS for styling
